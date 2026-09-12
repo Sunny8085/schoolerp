@@ -15,7 +15,8 @@ public record NotificationRequestDto(
         @NotBlank
         @Size(max = 200)
         String title,
-
+        
+        @NotBlank
         String description,
 
         @NotNull
