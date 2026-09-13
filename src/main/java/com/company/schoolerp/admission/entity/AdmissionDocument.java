@@ -2,6 +2,10 @@ package com.company.schoolerp.admission.entity;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -39,7 +43,8 @@ public class AdmissionDocument {
 
     @Column(name = "file_path", columnDefinition = "TEXT")
     private String filePath;
-
+    
+    @CreationTimestamp
     @Column(name = "uploaded_at")
     private LocalDateTime uploadedAt;
     
@@ -49,6 +54,7 @@ public class AdmissionDocument {
     @Column(name = "verification_remarks", columnDefinition = "TEXT")
     private String verificationRemarks;
     
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "application_id", nullable = false)
     private AdmissionApplication application;

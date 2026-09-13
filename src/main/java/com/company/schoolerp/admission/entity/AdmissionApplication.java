@@ -2,7 +2,6 @@ package com.company.schoolerp.admission.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,9 +55,8 @@ public class AdmissionApplication {
     @Column(name = "gender", length = 20)
     private String gender;
     
-    @Builder.Default
     @Column(name = "nationality", length = 50)
-    private String nationality = "INDIAN";
+    private String nationality;
 
     @Column(name = "religion", length = 50)
     private String religion;
@@ -66,14 +64,14 @@ public class AdmissionApplication {
     @Column(name = "category", length = 50)
     private String category;
 
-    @Column(name = "aadhaar_no", length = 20)
+    @Column(name = "aadhaar_no", unique = true, nullable = false, length = 20)
     private String aadhaarNo;
     
     @Column(name = "apaar_id", length = 20)
     private String apaarId;
     
     @Column(name = "abc_id", length = 20)
-    private String abcID;
+    private String abcId;
 
     @Column(name = "father_name", length = 100)
     private String fatherName;
@@ -138,7 +136,7 @@ public class AdmissionApplication {
     private String applicationPaymentStatus;
 
     @Column(name = "application_payment_date")
-    private OffsetDateTime applicationPaymentDate;
+    private LocalDateTime applicationPaymentDate;
 
     @Column(name = "application_payment_mode", length = 30)
     private String applicationPaymentMode;
@@ -150,14 +148,14 @@ public class AdmissionApplication {
     private String applicationPaymentReceiptNo;
     
     @Builder.Default
-    @Column(name = "admission_fee", nullable = false, precision = 12, scale = 2)
+    @Column(name = "admission_fee", precision = 12, scale = 2)
     private BigDecimal admissionFee = BigDecimal.ZERO;
     
-    @Column(name = "admission_payment_status", nullable = false, length = 30)
+    @Column(name = "admission_payment_status", length = 30)
     private String admissionPaymentStatus;
 
     @Column(name = "admission_payment_date")
-    private OffsetDateTime admissionPaymentDate;
+    private LocalDateTime admissionPaymentDate;
 
     @Column(name = "admission_payment_mode", length = 30)
     private String admissionPaymentMode;
@@ -171,9 +169,6 @@ public class AdmissionApplication {
     // Application status
     @Column(name = "status", nullable = false, length = 40)
     private String status;
-
-    @Column(name = "verified_at")
-    private LocalDateTime verifiedAt;
 
     @Column(name = "rejection_reason", columnDefinition = "TEXT")
     private String rejectionReason;
