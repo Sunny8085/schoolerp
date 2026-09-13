@@ -4,9 +4,12 @@ import java.math.BigDecimal;
 
 import com.company.schoolerp.common.Auditable;
 import com.company.schoolerp.common.Status;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,7 +35,8 @@ public class AdmissionCategory extends Auditable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "notification_id", nullable = false)
     private AdmissionNotifications notification;
@@ -49,7 +53,8 @@ public class AdmissionCategory extends Auditable{
     @Builder.Default
     @Column(name = "application_fee", nullable = false, precision = 10, scale = 2)
     private BigDecimal applicationFee = BigDecimal.ZERO;
-
+    
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)
     private Status status;
 

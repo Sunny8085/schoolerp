@@ -59,7 +59,7 @@ public class AdmissionNotificationsServiceImpl implements AdmissionNotifications
 		
 		Boolean status = admNotifyRepo.existsById(id);
 		if(!status) {
-			throw new ResourceNotFoundException("");
+			throw new ResourceNotFoundException("Notification not found");
 		}
 		admNotifyRepo.deleteById(id);
 		return "Notification deleted";
@@ -123,7 +123,7 @@ public class AdmissionNotificationsServiceImpl implements AdmissionNotifications
 	
 	
 	/** Retrieves an admission notification by ID or throws ResourceNotFoundException if not found. */
-	private AdmissionNotifications checkNotification(Long id) {
+	public AdmissionNotifications checkNotification(Long id) {
 		log.debug("Checking admission notification existence. id={}", id);
 		
 		return admNotifyRepo.findById(id)
